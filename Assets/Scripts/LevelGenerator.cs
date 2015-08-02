@@ -117,7 +117,7 @@ public class LevelGenerator : MonoBehaviour {
 				Debug.Log ("Starte LookingforPattern");
 				List<GameObject> neighbours = lookforpattern(null, curBlock, null, true);
 				Debug.Log (neighbours.Count);
-				if(neighbours.Count>=3){
+				if(neighbours.Count>=4){
 					DeleteBlocks(neighbours);
 				}
 				curBlock = createBlock (nextColor);
@@ -134,7 +134,7 @@ public class LevelGenerator : MonoBehaviour {
 				Debug.Log ("Starte LookingforPattern");
 				List<GameObject> neighbours = lookforpattern(null, curBlock, null, true);
 				Debug.Log (neighbours.Count);
-				if(neighbours.Count>=3){
+				if(neighbours.Count>=4){
 					DeleteBlocks(neighbours);
 				}
 				curBlock = createBlock (nextColor);
@@ -210,6 +210,9 @@ public class LevelGenerator : MonoBehaviour {
 				allBlocks = lookforpattern(allBlocks, next, target, false);
 			}
 		//}
+		if (allBlocks.Count >= 4) {
+			return allBlocks;
+		}
 
 		return allBlocks;
 	
@@ -219,7 +222,6 @@ public class LevelGenerator : MonoBehaviour {
 		addScorePoints (blocks.Count);
 		multiplicator_coolDown = multiplicator_coolDown_Time;
 		UpdateView ();
-
 		foreach (GameObject current in blocks) {
 			int curx=Mathf.RoundToInt(current.transform.position.x);
 			int cury=Mathf.RoundToInt(current.transform.position.y);
@@ -320,7 +322,7 @@ public class LevelGenerator : MonoBehaviour {
 						Debug.Log("Look for Pattern");
 						List<GameObject> neighbours = lookforpattern(null, myBlock, null, true);
 						Debug.Log (neighbours.Count);
-						if(neighbours.Count>=3){
+						if(neighbours.Count>=4){
 							wait(0.25f);
 							DeleteBlocks(neighbours);
 						}
